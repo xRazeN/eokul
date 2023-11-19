@@ -1,0 +1,206 @@
+﻿<!DOCTYPE html>
+<html>
+<html lang="en">
+<head>
+	<meta name="viewport" content="with=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+	<title>e-Okul Yönetim Bilgi Sistemi </title>
+	<link rel="stylesheet" href="style.css">
+	 <style>
+        
+      .custom-button {
+            display: inline-block;
+            padding: 20px 53px;
+            font-size: 16px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            opacity: 0;
+            
+            position: absolute;
+            top: 360px; 
+            right: 380px;
+            }
+        
+        .custom-button:hover {
+            background-color: #2980b9;
+        }
+
+        .centered-image {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 9998;
+        }
+        
+        .input-container input[type="text"] {
+            width: 300px; 
+            height: 20px; 
+            font-size: 15px; 
+			border: none;
+            outline: none;
+            padding: 10px; 
+        }
+
+        .input-container input[type="text"]::placeholder {
+            color: #99999999; 
+        }
+
+        .input-container2 input[type="text"] {
+            width: 300px; 
+            height: 20px; 
+            font-size: 15px; 
+			border: none;
+            outline: none;
+            padding: 10px; 
+        }
+
+        .input-container2 input[type="text"]::placeholder {
+            color: #99999999; 
+        }
+
+        .input-container3 input[type="text"] {
+            width: 300px; 
+            height: 20px; 
+            font-size: 15px; 
+			border: none;
+            outline: none;
+            padding: 10px; 
+        }
+
+        .input-container3 input[type="text"]::placeholder {
+            color: #99999999; 
+        }
+
+        .message {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: red;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            z-index: 9999;
+        }
+
+        .tamam-button {
+            display: none;
+            padding: 11px 25px;
+            font-size: 16px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            opacity: 0;
+            
+            position: absolute;
+            top: 442.5px; 
+            right: 428px;
+            z-index: 9999;
+        }
+    </style>
+</head>
+<body>
+	<section class="header">
+	
+		
+<div class="login-image">
+	<a href="index.html"><img src="images/eokulloginin.png"></a>
+	</div>
+
+<div class="input-container">
+            <input type="text" id="userInput" placeholder=" Lütfen Resimdeki Rakamları Giriniz">
+        </div>
+
+<div class="input-container2">
+            <input type="text" id="userInput" placeholder=" Lütfen Kullanıcı Adınızı Giriniz">
+        </div>
+
+<div class="input-container3">
+            <input type="text" id="userInput" placeholder=" Şifre Giriniz">
+        </div>
+
+        <button class="custom-button" onclick="checkInputs()">click me</button>
+
+        <div id="messageElement" class="message"></div>
+
+        <img id="displayedImage" class="centered-image" src="images/buttonclicked.png" alt="Displayed Image">
+
+        <button id="tamamButton" class="tamam-button" onclick="finishProcess()">Tamam</button>
+
+
+
+
+           <script>
+            function checkInputs() {
+                let allInputsFilled = true;
+                const inputs = document.querySelectorAll('.userInput');
+
+                inputs.forEach(input => {
+                    if (input.value.trim() === '') {
+                        allInputsFilled = false;
+                        return;
+                    }
+                });
+
+                if (allInputsFilled) {
+                    const displayedImage = document.getElementById('displayedImage');
+                    const tamamButton = document.getElementById('tamamButton');
+                    displayedImage.style.display = 'block';
+                    tamamButton.style.display = 'block';
+
+                }
+            }
+
+            function finishProcess() {
+                const displayedImage = document.getElementById('displayedImage');
+                displayedImage.style.display = 'none';
+                const tamamButton = document.getElementById('tamamButton');
+                tamamButton.style.display = 'none';
+
+            }
+
+        </script>
+
+        <script>
+    // Your JavaScript code using fetch
+    fetch('/createUser', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        number: 123,
+        name: 'John Doe',
+        password: 'password123',
+      }),
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log(data.message); // Output the response message
+      // Handle the response from the server as needed
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      // Handle errors here
+    });
+  </script>
+
+
+
+</section>
+
+
+
+
+</body>
+</html>
